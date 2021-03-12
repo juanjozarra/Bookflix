@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title> Bookflix </title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+<%= render 'layouts/header' %>
+
+<ul class="nav justify-content-end">
+  <%-  if user_signed_in? %>
+  <title> Ingresaste a Bookflix </title>
+   <li class="nav-item">
+    <%= link_to "Cerrar Sesion",destroy_user_session_path, method: :delete%>
+   </li>
+  <% end %>
+</ul>
+
+<div class="container"> 
+  <% if alert %>
+   <p class="table-danger"><%= alert %></p>
+  <% end %>
+
+  <% if flash[:notice] %>
+    <div class="alert alert-info"> <%= flash[:notice] %> </div>
+  <% end %>
+  
+  <%= yield %>
+</div>
+
+</body>
+</html>
